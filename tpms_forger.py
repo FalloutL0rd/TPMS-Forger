@@ -30,7 +30,7 @@ ENCODERS = [
 
 #Default HackRF command used when --transmit is given with no quoted argument
 #Set to "" to require the user to always supply their own command
-HACKRF_DEFAULT_CMD = "hackrf_transfer -t generated_rf/ford_tpms_2m.cs8 -f 315000000 -s 2000000 -x 20 -R"
+HACKRF_DEFAULT_CMD = ""
 
 #Running spinner frames
 SPINNER_FRAMES = ["( | )", "( / )", "( - )", "( \\ )"]
