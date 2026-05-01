@@ -134,9 +134,9 @@ def main():
 		description="TPMS packet forger. Builds .cs8 IQ files for replay or HackRF transmission.",
 	)
 	parser.add_argument("-l", "--list",		action="store_true",								help="list available encoders and exit")
-	parser.add_argument("--id",				type=parse_ids,										help="comma-separated sensor IDs (8 hex chars each, up to 4)")
-	parser.add_argument("--pressure",		type=float,											help="tire pressure in PSI")
-	parser.add_argument("--temperature",	type=float,											help="tire temperature in Celsius (Ford)")
+	parser.add_argument("--id",				type=parse_ids,										help="comma-separated sensor IDs")
+	parser.add_argument("--pressure",		type=float,											help="tire pressure")
+	parser.add_argument("--temperature",	type=float,											help="tire temperature")
 	parser.add_argument("--separate",		action="store_true",								help="write a separate pair of .cs8 files per sensor ID")
 	parser.add_argument("--transmit",		nargs="?", const="", default=None, metavar="CMD",	help='transmit via HackRF after forging (Ctrl+C to stop) - passes quoted command, or no value to use HACKRF_DEFAULT_CMD')
 
