@@ -75,7 +75,7 @@ def transmit(command):
 	#posix=False on Windows keeps backslash-paths intact
 	cmd_args = shlex.split(command, posix=(os.name != "nt"))
 	if not cmd_args:
-		print(f"{ERR}Error: --transmit command was empty after parsing{END}", file=sys.stderr)
+		print(f"{ERR}error: --transmit command was empty after parsing{END}", file=sys.stderr)
 		sys.exit(1)
 
 	print(f"{LBL}Transmitting:{END} {command}")
@@ -85,7 +85,7 @@ def transmit(command):
 	try:
 		proc = subprocess.Popen(cmd_args, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
 	except FileNotFoundError:
-		print(f"{ERR}Error: '{cmd_args[0]}' not found on PATH{END}", file=sys.stderr)
+		print(f"{ERR}error: '{cmd_args[0]}' not found on PATH{END}", file=sys.stderr)
 		sys.exit(1)
 
 	#Both Python and the child receive Ctrl+C from the shared console
@@ -165,14 +165,14 @@ def main():
 	try:
 		encoder.forge(args.id, args.pressure, args.temperature, args.separate)
 	except ValueError as e:
-		print(f"{ERR}Error: {e}{END}", file=sys.stderr)
+		print(f"{ERR}error: {e}{END}", file=sys.stderr)
 		sys.exit(1)
 
 	if args.transmit is not None:
 		#--transmit was given - "" (the const) means fall back to HACKRF_DEFAULT_CMD
 		command = args.transmit.strip() or HACKRF_DEFAULT_CMD.strip()
 		if not command:
-			print(f"{ERR}Error: --transmit was empty and HACKRF_DEFAULT_CMD is empty{END}", file=sys.stderr)
+			print(f"{ERR}error: --transmit was empty and HACKRF_DEFAULT_CMD is empty{END}", file=sys.stderr)
 			sys.exit(1)
 		print()
 		transmit(command)
