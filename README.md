@@ -36,22 +36,22 @@ Tested on Windows 11 with PowerShell.
 ### Example commands
 
 ```PowerShell
-# List available encoders
+#List available encoders
 python tpms_forger.py -l
 
-# Forge a single sensor (encoder 1, 31 PSI, 21 C)
+#Forge a single sensor (encoder 1, 31 PSI, 21 C)
 python tpms_forger.py -1 --id 12345678 --pressure 31 --temperature 21
 
-# Forge multiple tires into one combined file
+#Forge multiple tires into one combined file
 python tpms_forger.py -1 --id 12345678,12345679,1234567a,1234567b --pressure 31 --temperature 21
 
-# Same multiple tires, one file per ID
+#Same multiple tires, one file per ID
 python tpms_forger.py -1 --id 12345678,12345679,1234567a,1234567b --pressure 31 --temperature 21 --separate
 
-# Forge and transmit via HackRF (full hackrf_transfer command in quotes)
+#Forge and transmit via HackRF (full hackrf_transfer command in quotes)
 python tpms_forger.py -1 --id 12345678 --pressure 31 --temperature 21 --transmit "hackrf_transfer -t generated_rf/<2m_file>.cs8 -f 315000000 -s 2000000 -x 20 -R"
 
-# Replay-decode the 250 kSps file through rtl_433 (no radios needed)
+#Replay-decode the 250 kSps file through rtl_433 (no radios needed)
 rtl_433 -r generated_rf/<250k_file>.cs8 -s 250000
 ```
 
@@ -82,10 +82,6 @@ This tool produces TPMS packets, rtl_433 verifies them.
 4. With a separate RTL-SDR running rtl_433 in receive mode, confirm the over-the-air transmission decodes the same as the replay.
 
 If your target vehicle's TPMS has no built-in rtl_433 decoder, rtl_433's flex decoder system (`-X`) lets you describe a custom protocol pattern at the command line for ad-hoc verification.
-
-## Future work
-
-- Additional vehicle encoders. The encoder structure is small and self-contained, see Contributing below.
 
 ## Contributing
 
